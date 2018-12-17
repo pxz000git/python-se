@@ -1,0 +1,2 @@
+version:python3
+python基础知识
