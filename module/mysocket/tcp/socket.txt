@@ -16,6 +16,8 @@ SOCK_STREAM：用于TCP
 SOCK_DGRAM：用于UDP
 TCP和UDP都是基于Client/Server的编程模型，所以Socket编程也分为客户端和服务器端，以TCP为例：
 
+TCP:
+适用于点对点链接等，需要经过三次握手
 客户端：
 socket套接字实例s可用于客户端的方法有以下几个：
     s.connect(addr)：连接服务器端套接字。addr格式取决于地址族，对于IPv4来说，是一个包含ip地址与端口的元组，(host, port)。连接失败会报socket.error错误。

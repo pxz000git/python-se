@@ -8,7 +8,7 @@ import socket
 
 def client_tcp():
     c_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    ip = '127.0.0.1'
+    ip = '172.18.22.2'
     port = 8005
     address = (ip, port)
     c_socket.connect(address)
