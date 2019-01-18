@@ -1,0 +1,31 @@
+Python socket
+Python的网络编程主要支持两种网络协议：TCP和UDP。这两种协议都通过叫Socket的编程抽象进行处理。Socket起源于Unix，是类似于文件的存在，可以像文件一样进行I/O、打开、关闭等操作，最主要的是它可以实现网络上不同主机的进程间通信，所以基本上Socket是任何一种网络通讯中最基础的内容。
+
+Python中建立一个套接字很简单：
+    import socket
+    s = socket.socket(family, type)
+地址族
+    family为地址族，该族指定要使用的网络协议，主要使用的有：
+    AF_INET：IPv4协议(TCP，UDP)
+    AF_INET6：IPv6协议(TCP，UDP)
+    AF_UNIX：UNIX域协议，用于同一台机器的进程间通讯
+套接字类型
+    type为套接字类型，指定给定的协议组中使用的通信类型：
+
+SOCK_STREAM：用于TCP
+SOCK_DGRAM：用于UDP
+TCP和UDP都是基于Client/Server的编程模型，所以Socket编程也分为客户端和服务器端，以TCP为例：
+
+客户端：
+socket套接字实例s可用于客户端的方法有以下几个：
+    s.connect(addr)：连接服务器端套接字。addr格式取决于地址族，对于IPv4来说，是一个包含ip地址与端口的元组，(host, port)。连接失败会报socket.error错误。
+    s.sendall(string)：尝试发送所有数据，成功则返回None，失败则报异常。
+    s.recv(bufsize)：接收数据，bufsize指定接收的最大数据量。
+    s.close()：关闭套接字
+
+服务器端：
+Socket实例与服务器端编程有关的方法有以下几个：
+    s.bind(addr)：addr也是(host, port)形式的元组，将套接字绑定到特定的地址和端口上。空字符串表示任意地址，'broadcast'可以用做发送广播信息。
+    s.listen(backlog)：开始监听连接，backlog为最大挂起连接次数。
+    s.accept：返回元组(conn，addr)，conn为新的套接字，可以用来发送和接收数据。addr是客户端的套接字地址。
+    conn.recv()、conn.sendall()和conn.close()与客户端同。
